@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Palak ❤️</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0; font-family:Arial,sans-serif; color:#fff;
+  min-height:100vh; overflow-x:hidden;
+  background:linear-gradient(135deg,#240018,#6b123f,#1b0010);
+}
+.page{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px}
+.card{
+  width:min(560px,94vw); padding:32px 22px; text-align:center;
+  background:rgba(255,255,255,.10); border:1px solid rgba(255,255,255,.2);
+  border-radius:28px; backdrop-filter:blur(12px);
+  box-shadow:0 20px 70px rgba(0,0,0,.4)
+}
+.heart{font-size:55px;animation:pulse 1.5s infinite}
+h1{font-size:42px;margin:10px 0;background:linear-gradient(90deg,#fff,#ffb6d9);
+-webkit-background-clip:text;color:transparent}
+h2{font-size:25px;margin-top:8px}
+p{font-size:17px;line-height:1.7;color:#ffe8f1}
+.photo{
+  width:100%; max-height:330px; object-fit:cover; border-radius:22px;
+  margin:18px 0; display:none; box-shadow:0 12px 35px rgba(0,0,0,.35)
+}
+button{
+  border:0; padding:14px 26px; margin:8px; border-radius:999px;
+  font-size:17px; font-weight:bold; cursor:pointer; transition:.25s
+}
+.yes{background:#ff4f93;color:#fff;box-shadow:0 8px 25px rgba(255,79,147,.4)}
+.no{background:#fff;color:#8d174e}
+button:hover{transform:scale(1.06)}
+#final{display:none}
+.float{
+ position:fixed; bottom:-30px; font-size:22px; animation:rise 6s linear infinite;
+ opacity:.7; pointer-events:none
+}
+@keyframes rise{to{transform:translateY(-110vh) rotate(360deg);opacity:0}}
+@keyframes pulse{50%{transform:scale(1.12)}}
+.small{font-size:13px;opacity:.7;margin-top:20px}
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="card" id="main">
+    <div class="heart">❤️</div>
+    <h1>Hey Palak...</h1>
+    <h2>I made something just for you.</h2>
+    <p>
+      There are some feelings that are difficult to explain in words,
+      so I decided to put mine here. Take a little moment and read this till the end. ❤️
+    </p>
+
+    <!-- PHOTO: replace the filename below with your photo -->
+    <img class="photo" id="photo" src="palak.jpg" alt="Palak">
+
+    <button class="yes" onclick="showProposal()">Open my heart 💌</button>
+    <div class="small">Made with ❤️ by Aditya</div>
+  </div>
+
+  <div class="card" id="final">
+    <div class="heart">💖</div>
+    <h1>Palak ❤️</h1>
+    <p>
+      Since you came into my life, ordinary moments started feeling special.
+      I don't need a perfect story—I just want a real one, with you.
+      I want to keep making memories, laughing together, supporting each other,
+      and choosing each other again and again.
+    </p>
+    <h2>So, Palak...</h2>
+    <h1 style="font-size:34px">Will you be mine? 💍❤️</h1>
+    <button class="yes" onclick="yes()">YES ❤️</button>
+    <button class="no" onclick="moveNo(this)">Not yet 🙈</button>
+    <p id="answer" style="display:none;font-size:20px;font-weight:bold">
+      You just made Aditya the happiest person. ❤️🥹
+    </p>
+  </div>
+</div>
+
+<script>
+const photo=document.getElementById("photo");
+photo.onerror=()=>photo.style.display="none";
+photo.onload=()=>photo.style.display="block";
+
+function showProposal(){
+  document.getElementById("main").style.display="none";
+  document.getElementById("final").style.display="block";
+  for(let i=0;i<18;i++) setTimeout(makeHeart,i*120);
+}
+function yes(){
+  document.getElementById("answer").style.display="block";
+  for(let i=0;i<35;i++) setTimeout(makeHeart,i*70);
+}
+function moveNo(btn){
+  btn.innerText="Think again 🙈";
+  btn.style.transform=`translate(${Math.random()*100-50}px,${Math.random()*60-30}px)`;
+}
+function makeHeart(){
+  const h=document.createElement("div");
+  h.className="float"; h.innerText=["❤️","💖","💕","✨"][Math.floor(Math.random()*4)];
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=(4+Math.random()*4)+"s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),8000);
+}
+</script>
+</body>
+</html>
